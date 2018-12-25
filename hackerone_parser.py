@@ -33,7 +33,7 @@ def check_hash_for_existing(hash):
 def get_new_reports_and_add_to_hashtable_index(hash_table, new_reports):
     for report in new_reports:
         if report["readable_substate"]=="Resolved": # Filter shitty reports like spam or n/a 
-            current_report_hash = hashlib.md5(report["title"]+str(report["id"]).encode('utf-8')).hexdigest()
+            current_report_hash = hashlib.md5(report["title"].encode('utf-8')+str(report["id"])).hexdigest()
             if check_hash_for_existing(current_report_hash):
                 # here what to do if parser found new reports :)
                 print('New report:' + str(report['title']))
